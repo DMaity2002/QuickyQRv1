@@ -1,4 +1,4 @@
-# QuickyQRv1
+# QuickyQR
 Custom QR Code Generator
 
 Author: Debojyoti Maity
