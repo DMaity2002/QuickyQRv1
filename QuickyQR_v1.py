@@ -13,36 +13,31 @@ class QRCodeGenerator(QMainWindow):
         self.setWindowTitle("QuickyQR")
         self.setMinimumSize(400, 700)
         
-        # Create a QLabel for the background
-        self.background = QLabel(self)
+        
+        self.background = QLabel(self)  #background
         self.background.setPixmap(QPixmap("D:\programming\python\QRbackground.png"))
         self.background.setScaledContents(True)
         self.background.resize(self.size())
 
 
-        # Create central widget and main layout
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
         main_layout = QVBoxLayout(central_widget)
-        
-        # Create input layout (horizontal)
+      
         input_layout = QHBoxLayout()
         
-        # Create text input
+        # text input
         self.text_input = QLineEdit()
         self.text_input.setPlaceholderText("Enter text for QR code")
         input_layout.addWidget(self.text_input)
-        
-        # Create generate button
+
         self.generate_button = QPushButton("Generate")
         self.generate_button.clicked.connect(self.generate_qr_code)
         input_layout.addWidget(self.generate_button)
         
-        # Add input layout to main layout
         main_layout.addLayout(input_layout)
         
-        # Create QR code display label
-        self.qr_label = QLabel()
+        self.qr_label = QLabel()  # QR code display label
         self.qr_label.setAlignment(Qt.AlignCenter)
         self.qr_label.setMinimumSize(300, 300)
         main_layout.addWidget(self.qr_label)
@@ -52,13 +47,11 @@ class QRCodeGenerator(QMainWindow):
         self.status_label.setAlignment(Qt.AlignCenter)
         main_layout.addWidget(self.status_label)
         
-        # Connect enter key on text input to generate QR code
-        self.text_input.returnPressed.connect(self.generate_qr_code)
+      
+        self.text_input.returnPressed.connect(self.generate_qr_code)  # Enter key on text input to generate QR code
         
     def generate_qr_code(self):
-        """Generate QR code from text input and display it"""
         text = self.text_input.text().strip()
-        
         if not text:
             self.status_label.setText("Please enter some text")
             self.qr_label.clear()
@@ -95,10 +88,10 @@ class QRCodeGenerator(QMainWindow):
             self.qr_label.clear()
 
     def resizeEvent(self, event):
-        # Resize background when window is resized
         self.background.resize(self.size())
         super().resizeEvent(event)
-            
+
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = QRCodeGenerator()
